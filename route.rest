@@ -2,7 +2,7 @@ GET http://localhost:4001/storeRoutes
 
 ###3
 
-GET http://localhost:4001/storeRoutes/648840dd4fe456e173300d8b
+GET http://localhost:4001/storeRoutes/647db7ba6cb1e162b186cc0e
 ###
 POST http://localhost:4001/storeRoutes
 Content-Type: application/json
@@ -13,8 +13,7 @@ Content-Type: application/json
     "description":"Nokia lumia"
 }
 ###
-DELETE http://localhost:4001/storeRoutes/648840dd4fe456e173300d8b
-
+DELETE http://localhost:4001/storeRoutes/647db7ba6cb1e162b186cc0e
 ###
 PATCH http://localhost:4001/storeRoutes/647db7ba6cb1e162b186cc0e
 Content-Type: application/json
@@ -49,7 +48,7 @@ GET http://localhost:4001/user/profile
 ###
 POST http://localhost:4001/carts/add-to-cart
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDgxYzI3MjhkYjJmNTdhMDBmNzRmYWUiLCJlbWFpbCI6ImhrQGdtYWlsLmNvbSIsImlhdCI6MTY4NjkxNjE0OCwiZXhwIjoxNjg2OTE5NzQ4fQ.iVt3DF4BwD87fLEO-WYcbuOcS1ytiWlQz3a5dT2BT4c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDgxYzI3MjhkYjJmNTdhMDBmNzRmYWUiLCJlbWFpbCI6ImhrQGdtYWlsLmNvbSIsImlhdCI6MTY4NzQxNzg0NSwiZXhwIjoxNjg3NDIxNDQ1fQ.T3atx4JjxzNOhA0iXtLtPglYVsKdKmOlOQVx5A-TIes
 
 {
   "productName": "bag"
