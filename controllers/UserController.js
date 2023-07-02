@@ -66,6 +66,69 @@ exports.loginUser = async (req, res) => {
     res.status(500).json(createErrorResponse(err.message));
   }
 };
+// Admin Registration
+exports.registerAdmin = async (req, res) => {
+  try {
+    // Extract admin information from the request body
+    const { name, email, password } = req.body;
+
+    // Check if the email is already registered
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(409).json(createErrorResponse('Email already registered'));
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new admin object with the role "admin"
+    const newAdmin = new User({
+      name,
+      email,
+      password: hashedPassword,
+      role: 'admin',
+    });
+
+    // Save the new admin to the database
+    await newAdmin.save();
+
+    // Return success response
+    res.status(201).json(createSuccessResponse('Admin registered successfully'));
+  } catch (err) {
+    res.status(500).json(createErrorResponse(err.message));
+  }
+};
+
+// Admin Login
+exports.loginAdmin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Find the admin based on the provided email and role
+    const admin = await User.findOne({ email, role: 'admin' });
+    if (!admin) {
+      return res.status(404).json(createErrorResponse('Invalid credentials'));
+    }
+
+    // Compare the provided password with the hashed password in the database
+    const isPasswordValid = await bcrypt.compare(password, admin.password);
+    if (!isPasswordValid) {
+      return res.status(401).json(createErrorResponse('Invalid credentials'));
+    }
+
+    // Generate a JWT token
+    const token = jwt.sign(
+      { userId: admin._id, email: admin.email, role: admin.role },
+      secretKey,
+      { expiresIn: '1h' }
+    );
+
+    // Return the token to the client
+    res.json(createSuccessResponse(token));
+  } catch (err) {
+    res.status(500).json(createErrorResponse(err.message));
+  }
+};
 
 // Token Authentication
 exports.authenticateToken = (req, res, next) => {
