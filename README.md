@@ -1,0 +1,1 @@
+This is a Node.js and Express-based e-commerce project that allows users to browse and purchase products, manage their shopping cart, and perform user-related actions. The project includes three main models: User, Product, and Cart. Users can create accounts, log in, and add products to their carts.
